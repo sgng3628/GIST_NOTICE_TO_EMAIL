@@ -19,7 +19,7 @@ My nuc has gone. So I have to check directly. The /tmp file became read only fil
 Change corntab 9-22.
 And I found that my cron shows error, but I don't have any way to check it. Now I found the way to remain log.
 
-/etc/rsyslog.d/50-defualt.conf
+`/etc/rsyslog.d/50-defualt.conf`
 
 Find a line
 #cron.* -> uncomment it
