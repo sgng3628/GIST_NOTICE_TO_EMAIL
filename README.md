@@ -19,11 +19,29 @@ My nuc has gone. So I have to check directly. The /tmp file became read only fil
 Change corntab 9-22.
 And I found that my cron shows error, but I don't have any way to check it. Now I found the way to remain log.
 
-/etc/rsyslog.d/50-defualt.conf
+`/etc/rsyslog.d/50-defualt.conf`
 
 Find a line
-#cron.* -> uncomment it
+\#cron.* -> uncomment it
 
 sudo service rsyslog restart
 
 and then my log will be shown in /var/log/cron.log
+
+# 2020_04_08
+Inside python file, it is so dangerous for using my personal information just like being nudity.
+So I tried to input txt file for emails list.
+And I'd like to do use json file for my email and id.
+
+
+# 2020_04_10
+cron log is just the log that that how's the cron going on.
+For the log for the program, I have to redirect(appen) the stdout, stderr so that I can check why my cron's are not working.
+
+The problem that I had is very simple, that is cron's cannot find the emails.txt file bcs it starts in the root direcory. To solve that problem, I used os.path.dirname(__file__) and joint it with the emails.txt. Another way to solve this problem is that making the crontab env changed. But I'm not sure to do it.
+
+### TLS / SSL
+At first I used TLS, it means that after making object, then I'll use starttls() function,but our mail server doesnot suppot this function. So, it is better for me to use SSL, using 465 port.(it is secured at making the objcet state)
+
+Using Json for my personal information. The form of the json file is too simple but, try to use json file.\
+my_id, my_passwd, my_email. that's all
