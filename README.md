@@ -45,3 +45,19 @@ At first I used TLS, it means that after making object, then I'll use starttls()
 
 Using Json for my personal information. The form of the json file is too simple but, try to use json file.\
 my_id, my_passwd, my_email. that's all
+
+
+# 2020_04_13
+Move crawler from nuc to ec2.
+I felt that it is hard time to setting all of the pip list and other settings.
+How to handle it more easier way?
+Maybe make docker image?
+
+for ubuntu 18.04
+pip3
+requests
+bs4
+selenium
+chromedriver
+google-chrome(sync with chromedriver)
+

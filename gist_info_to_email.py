@@ -11,12 +11,14 @@ from email import encoders
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def inputEmails():
+#    f = open(os.path.join(BASE_DIR,"testemail.txt"))
     f = open(os.path.join(BASE_DIR,"emails.txt"))
     emails = f.readlines()
     f.close()
     tmp = []
     for email in emails:
         tmp.append(email.strip())
+        print(email)
     return tmp
 
 def inputPd():
@@ -86,6 +88,6 @@ with requests.Session() as s:
             s_mail = smtplib.SMTP_SSL('mail.gist.ac.kr',465)
             s_mail.login(PD["my_email"],PD["my_passwd"])
 #            for email in TEST_EMAIL:     
-            for email in TO_EMAILS:     
+            for email in TO_EMAILS:
                 s_mail.sendmail(PD["my_email"],email,msg.as_string())
             s_mail.quit()
