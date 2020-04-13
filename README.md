@@ -60,6 +60,9 @@ bs4\
 selenium\
 chromedriver\
 google-chrome(sync with chromedriver)\
-
+wget
 
 image, file should be handled
+
+AWS EC2 has email sending limitations to prevent using ex2 as spam maker. I have to request following page.
+https://console.aws.amazon.com/support/contacts?#/rdns-limits
