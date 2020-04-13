@@ -74,7 +74,8 @@ with requests.Session() as s:
                 count += 1
                 attach_file_name = clip.get_text()
                 print(attach_file_name)
-                attach_file = wget.download(clip_url)
+                file_path = os.path.join(BASE_DIR,"files",attach_file_name)
+                attach_file = wget.download(clip_url,file_path)
                 part = MIMEBase('application','octet-stream')
                 part.set_payload(open(attach_file,'rb').read())
                 encoders.encode_base64(part)

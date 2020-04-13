@@ -66,3 +66,6 @@ image, file should be handled
 
 AWS EC2 has email sending limitations to prevent using ex2 as spam maker. I have to request following page.
 https://console.aws.amazon.com/support/contacts?#/rdns-limits
+Or, I have to check how many mails per day is allowed.
+
+And the problem of the mail is that gist mail has the problem for receiving it.
