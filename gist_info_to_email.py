@@ -1,4 +1,4 @@
-import requests,json
+import requests,json,wget
 import os
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -11,14 +11,13 @@ from email import encoders
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def inputEmails():
-#    f = open(os.path.join(BASE_DIR,"testemail.txt"))
-    f = open(os.path.join(BASE_DIR,"emails.txt"))
+    f = open(os.path.join(BASE_DIR,"testemail.txt"))
+#    f = open(os.path.join(BASE_DIR,"emails.txt"))
     emails = f.readlines()
     f.close()
     tmp = []
     for email in emails:
         tmp.append(email.strip())
-        print(email)
     return tmp
 
 def inputPd():
@@ -31,7 +30,7 @@ TO_EMAILS= inputEmails()
 
 with requests.Session() as s:
     notices = s.get('https://college.gist.ac.kr/prog/bbsArticle/BBSMSTR_000000005587/list.do')
-#    print("Request Success")
+    print("Request Success")
     html = notices.text
     soup = BeautifulSoup(html, 'html.parser')
     titles = []
@@ -49,15 +48,15 @@ with requests.Session() as s:
             options = webdriver.ChromeOptions()
             options.add_argument('headless')
             options.add_argument('window-size=1200x600')
-
+            print(1)
             driver = webdriver.Chrome(chrome_options=options)
             driver.get('https://college.gist.ac.kr/college/login.do')
-
+            print(2)
             driver.find_element_by_name('id').send_keys(PD["my_id"])
             driver.find_element_by_name('password').send_keys(PD["my_passwd"])
 
             driver.find_element_by_id('login_btn').click()
-
+            print(3)
             driver.get('https://college.gist.ac.kr/prog/bbsArticle/BBSMSTR_000000005587/list.do')
 
             driver.find_elements_by_class_name('subject')[i].find_element_by_tag_name('a').click()
@@ -72,16 +71,15 @@ with requests.Session() as s:
             count = 1
             for clip in soup.find_all('a',class_='btn-on-ico'):
                 clip_url = 'https://college.gist.ac.kr/cmm/fms/FileDown.do?atchFileId='+clip['href'].split("'")[1]+'&fileSn='+clip['href'].split("'")[3]
-                content = content + '\n' + str(count) + '. ' + clip.get_text() + "link: " + clip_url
                 count += 1
-#                print(clip_url)
-#                filename = 'clip.get_text()'
-                
-#                part = MIMEBase('application','octet-stream')
-#                part.set_payload((clip_url).read())
-#                encoders.encode_base64(part)
-#                part.add_header('Content-Diposition','attachment;filename='+filename)
-#                msg.attach(part)
+                attach_file_name = clip.get_text()
+                print(attach_file_name)
+                attach_file = wget.download(clip_url)
+                part = MIMEBase('application','octet-stream')
+                part.set_payload(open(attach_file,'rb').read())
+                encoders.encode_base64(part)
+                part.add_header('Content-Disposition','attachment',filename=attach_file_name)
+                msg.attach(part)
             contentpart = MIMEText(content)
             msg.attach(contentpart)
    

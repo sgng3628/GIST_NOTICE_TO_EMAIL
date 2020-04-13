@@ -53,11 +53,13 @@ I felt that it is hard time to setting all of the pip list and other settings.
 How to handle it more easier way?
 Maybe make docker image?
 
-for ubuntu 18.04
-pip3
-requests
-bs4
-selenium
-chromedriver
-google-chrome(sync with chromedriver)
+for ubuntu 18.04\
+pip3\
+requests\
+bs4\
+selenium\
+chromedriver\
+google-chrome(sync with chromedriver)\
 
+
+image, file should be handled
