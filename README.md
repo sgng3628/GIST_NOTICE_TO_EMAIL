@@ -69,3 +69,9 @@ https://console.aws.amazon.com/support/contacts?#/rdns-limits
 Or, I have to check how many mails per day is allowed.
 
 And the problem of the mail is that gist mail has the problem for receiving it.
+
+
+# 2020_04_15
+Change the mail with attachment.
+It is worked well within gmail or naver gm. mail, Even in thunderbird
+It doesn't work in our college mail.
