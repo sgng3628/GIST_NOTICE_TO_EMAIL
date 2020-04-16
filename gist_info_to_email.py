@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def inputEmails():
 #    f = open(os.path.join(BASE_DIR,"testemail.txt"))
-    f = open(os.path.join(BASE_DIR,"nongistemails.txt"))
+    f = open(os.path.join(BASE_DIR,"emails.txt"))
     emails = []
     while True:
         line = f.readline()
