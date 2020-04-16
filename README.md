@@ -75,3 +75,7 @@ And the problem of the mail is that gist mail has the problem for receiving it.
 Change the mail with attachment.
 It is worked well within gmail or naver gm. mail, Even in thunderbird
 It doesn't work in our college mail.
+
+#2020_04_16
+서비스 재가동. 절이 싫으면 중이 떠나라.
+학교 메일을 버렸다.

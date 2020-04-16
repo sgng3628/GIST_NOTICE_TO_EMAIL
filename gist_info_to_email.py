@@ -12,18 +12,18 @@ from email.utils import COMMASPACE,formatdate
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def inputEmails():
-    f = open(os.path.join(BASE_DIR,"testemail.txt"))
-#    f = open(os.path.join(BASE_DIR,"emails.txt"))
-    emails = f.readlines()
+#    f = open(os.path.join(BASE_DIR,"testemail.txt"))
+    f = open(os.path.join(BASE_DIR,"nongistemails.txt"))
+    emails = []
+    while True:
+        line = f.readline()
+        if not line: break
+        emails.append(line)
     f.close()
-    tmp = []
-    for email in emails:
-        tmp.append(email.strip())
-    return tmp
+    return emails
 
 def inputPd():
-    json_file = open(os.path.join(BASE_DIR,"gmail_pd.json"))
-#    json_file = open(os.path.join(BASE_DIR,"pd.json"))
+    json_file = open(os.path.join(BASE_DIR,"pd.json"))
     data = json.load(json_file)
     return data
 
@@ -62,7 +62,7 @@ def extract_html(html):
         file_path = os.path.join(BASE_DIR,"files",file_name)
         attach_file = wget.download(clip_url,file_path)
         files.append(file_path)
-    return subject, content, files[0:1]
+    return subject, content, files
 
 def send_mail(send_from, send_to, username, password, subject, message, files=[],server="mail.gist.ac.kr",port=465):
     msg = MIMEMultipart()
@@ -81,16 +81,14 @@ def send_mail(send_from, send_to, username, password, subject, message, files=[]
             msg.attach(part)
     smtp = smtplib.SMTP_SSL(server, port)
     smtp.login(username, password)
-    for to in send_to:
-        print(to)
-        smtp.sendmail(send_from, to, msg.as_string())
+    smtp.sendmail(send_from, send_to, msg.as_string())
+    print("Email-Success")
     smtp.quit()
 
 
 
 with requests.Session() as s:
     notices = s.get('https://college.gist.ac.kr/prog/bbsArticle/BBSMSTR_000000005587/list.do')
-    print("Request Success")
     html = notices.text
     soup = BeautifulSoup(html, 'html.parser')
     titles = []
