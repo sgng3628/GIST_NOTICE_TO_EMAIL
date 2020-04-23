@@ -64,7 +64,7 @@ def extract_html(html):
         files.append(file_path)
     return subject, content, files
 
-def send_mail(send_from, send_to, username, password, subject, message, files=[],server="mail.gist.ac.kr",port=465):
+def send_mail(send_from, send_to, username, password, subject, message, files=[],server="smtp.gmail.com",port=465):
     msg = MIMEMultipart()
     msg['From'] = "GIST학내공지"
 #    msg['To'] = COMMASPACE.join(send_to)
